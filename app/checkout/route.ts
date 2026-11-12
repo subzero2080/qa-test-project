@@ -24,7 +24,9 @@ export async function GET(req: NextRequest) {
   const session = await getStripe().checkout.sessions.create({
     mode: 'subscription',
     line_items: [{ price: PLANS[plan][cycle].priceId, quantity: 1 }],
-    success_url: user ? `${appUrl}/app/dashboard?checkout=success` : `${appUrl}/signup`,
+    success_url: user
+      ? `${appUrl}/app/dashboard?checkout=success`
+      : `${appUrl}/signup?session={CHECKOUT_SESSION_ID}`,
     cancel_url: `${appUrl}/pricing?cancelled=true`,
     metadata: { plan, cycle, userId: user?.id ?? '' },
     client_reference_id: user?.id,

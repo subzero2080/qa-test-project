@@ -65,8 +65,8 @@ export function Sidebar({ userEmail }: Props) {
               href={href}
               className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-200"
               style={{
-                color: active ? 'var(--accent-neon)' : 'var(--text-secondary)',
-                background: active ? 'rgba(0, 212, 255, 0.08)' : 'transparent',
+                color: active ? 'var(--text-primary)' : 'var(--text-secondary)',
+                background: active ? 'var(--accent-soft)' : 'transparent',
                 fontWeight: active ? 500 : 400,
               }}
               onMouseEnter={e => { if (!active) e.currentTarget.style.background = 'var(--border-glass)' }}
@@ -104,7 +104,7 @@ export function Sidebar({ userEmail }: Props) {
           <div className="flex items-center gap-2 px-3 py-2">
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-              style={{ background: 'var(--accent-neon)', color: '#0b0e14' }}
+              style={{ background: 'var(--accent-neon)', color: 'var(--accent-fg)' }}
             >
               {userEmail?.[0]?.toUpperCase() ?? '?'}
             </div>

@@ -78,7 +78,7 @@ function VerifyForm() {
     }
 
     router.refresh()
-    router.push('/app/dashboard')
+    router.push('/onboarding')
   }
 
   async function handleResend() {
@@ -138,8 +138,7 @@ function VerifyForm() {
             <button
               type="submit"
               disabled={loading || digits.join('').length < 6}
-              className="w-full py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 disabled:opacity-50"
-              style={{ background: 'var(--accent-neon)', color: '#0b0e14' }}
+              className="btn-primary w-full py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 disabled:opacity-50"
             >
               {loading ? 'Verifying…' : 'Verify Email'}
             </button>

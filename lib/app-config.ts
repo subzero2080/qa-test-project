@@ -11,7 +11,7 @@ export type BillingMode = 'signup_first' | 'pay_first' | 'trial_card' | 'none'
 
 export const config = {
   /** Display name — used in metadata, nav brand, auth pages, emails. */
-  name: process.env.NEXT_PUBLIC_APP_NAME || 'Acme',
+  name: process.env.NEXT_PUBLIC_APP_NAME || 'Greybox',
   /** Canonical app URL — used for OG metadata, sitemap, robots. */
   url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
 
@@ -31,7 +31,7 @@ export const config = {
    *  - 'none'        : no billing (remove Stripe during setup)
    */
   billing: {
-    mode: 'signup_first' as BillingMode,
+    mode: 'pay_first' as BillingMode,
   },
 
   /** Optional feature modules — SETUP offers to scaffold these. */

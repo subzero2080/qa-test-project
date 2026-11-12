@@ -65,7 +65,7 @@ function ResetPasswordForm() {
               <div style={{ marginBottom: '24px' }}>
                 <div style={{
                   width: '44px', height: '44px', borderRadius: '10px',
-                  background: 'rgba(0,212,255,0.1)', border: '1px solid rgba(0,212,255,0.2)',
+                  background: 'var(--accent-soft)', border: '1px solid var(--border-glass)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px',
                 }}>
                   <KeyRound size={20} style={{ color: 'var(--accent-neon)' }} />

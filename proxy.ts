@@ -6,7 +6,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 //
 // Routes reachable without a session. `/` and `/pricing` are public via the
 // exact `/` rule and the prefix list below.
-const PUBLIC_PATHS = ['/login', '/signup', '/verify', '/forgot-password', '/reset-password', '/pricing', '/privacy', '/terms', '/checkout', '/auth', '/api/billing/webhook', '/api/auth', '/api/public']
+const PUBLIC_PATHS = ['/login', '/signup', '/verify', '/forgot-password', '/reset-password', '/pricing', '/about', '/privacy', '/terms', '/checkout', '/auth', '/api/billing/webhook', '/api/auth', '/api/public']
 
 function isPublic(pathname: string) {
   // Exact match for '/' — never `startsWith('/')`, which would make every

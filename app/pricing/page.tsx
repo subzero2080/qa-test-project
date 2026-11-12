@@ -24,9 +24,12 @@ export default function PricingPage() {
         <Link href="/" className="text-lg font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>
           {APP_NAME}
         </Link>
-        <Link href="/login" className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-          Sign in
-        </Link>
+        <nav className="flex items-center gap-5">
+          <Link href="/" className="text-sm" style={{ color: 'var(--text-secondary)' }}>Home</Link>
+          <Link href="/about" className="text-sm" style={{ color: 'var(--text-secondary)' }}>About</Link>
+          <Link href="/pricing" className="text-sm" style={{ color: 'var(--text-primary)' }}>Pricing</Link>
+          <Link href="/login" className="text-sm" style={{ color: 'var(--text-secondary)' }}>Sign in</Link>
+        </nav>
       </header>
 
       <main className="px-6 pt-10 pb-20 flex flex-col items-center">
@@ -34,7 +37,7 @@ export default function PricingPage() {
           Simple pricing
         </h1>
         <p className="mt-3 text-center" style={{ color: 'var(--text-secondary)' }}>
-          Placeholder plans — update them in <code>lib/stripe/client.ts</code> during setup.
+          Pick a plan to get started. You&apos;ll create your account right after checkout.
         </p>
 
         <div className="mt-12 grid gap-6" style={{ gridTemplateColumns: `repeat(${Math.min(plans.length, 3)}, minmax(260px, 1fr))` }}>
@@ -72,8 +75,8 @@ export default function PricingPage() {
         </div>
 
         <p className="mt-10 text-sm" style={{ color: 'var(--text-muted)' }}>
-          Prefer to start free?{' '}
-          <Link href="/signup" style={{ color: 'var(--accent-neon)' }}>Create an account</Link>
+          Already have an account?{' '}
+          <Link href="/login" style={{ color: 'var(--text-primary)' }}>Sign in</Link>
         </p>
       </main>
     </div>
