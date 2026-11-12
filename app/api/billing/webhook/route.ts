@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
   switch (event.type) {
     case 'checkout.session.completed': {
       const s = event.data.object as Stripe.Checkout.Session
-      const { plan, cycle } = s.metadata ?? {}
+      const { plan } = s.metadata ?? {}
       const userId = s.client_reference_id || s.metadata?.userId || null
       const email = s.customer_details?.email ?? s.customer_email ?? null
 
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
         stripe_customer_id: s.customer as string,
         stripe_subscription_id: s.subscription as string,
         plan: plan ?? null,
-        billing_cycle: cycle ?? null,
+        billing_cycle: 'monthly',
         subscription_status: 'active',
       }
 
@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
         .from('profiles')
         .update({
           subscription_status: sub.status,
-          ...(planInfo ? { plan: planInfo.plan, billing_cycle: planInfo.cycle } : {}),
+          ...(planInfo ? { plan: planInfo.plan } : {}),
         })
         .eq('stripe_subscription_id', sub.id)
       break

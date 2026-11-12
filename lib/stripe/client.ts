@@ -14,25 +14,58 @@ export function getStripe(): Stripe {
 }
 
 // ---------------------------------------------------------------------------
-// PLACEHOLDER PLANS — the SETUP interview replaces these with the real plans
-// and their Stripe price IDs. Add/remove plans freely; keep the shape.
-// `amount` is in cents and used only for display on the pricing page.
+// PLANS — three monthly subscription tiers. `amount` is in cents and used only
+// for display; `priceId` is the Stripe recurring price. Keep the shape.
 // ---------------------------------------------------------------------------
 export const PLANS = {
+  developer: {
+    name: 'Developer',
+    tagline: 'For solo developers',
+    priceId: process.env.STRIPE_PRICE_DEVELOPER_MONTHLY!,
+    amount: 1999,
+    popular: false,
+    features: [
+      '1 user, 3 projects',
+      'Unlimited local test runs',
+      'Browser + API debugging, MCP, Chrome connect',
+      'Screenshots & traces · 7-day retention',
+    ],
+  },
   pro: {
     name: 'Pro',
-    monthly: { priceId: process.env.STRIPE_PRICE_PRO_MONTHLY!, amount: 2900 },
-    yearly:  { priceId: process.env.STRIPE_PRICE_PRO_YEARLY!,  amount: 29000 },
+    tagline: 'For growing products',
+    priceId: process.env.STRIPE_PRICE_PRO_MONTHLY!,
+    amount: 4999,
+    popular: true,
+    features: [
+      '1 user, 10 projects',
+      'Everything in Developer',
+      'Scheduled & regression suites · visual regression',
+      'GitHub / deploy triggers',
+      '10 cloud browser hours/mo · 90-day retention',
+    ],
+  },
+  team: {
+    name: 'Team',
+    tagline: 'For teams',
+    priceId: process.env.STRIPE_PRICE_TEAM_MONTHLY!,
+    amount: 9999,
+    popular: false,
+    features: [
+      '5 users, unlimited projects',
+      'Everything in Pro',
+      'Shared history, roles & approvals',
+      'Team reporting',
+      '50 cloud browser hours/mo · 1-year retention',
+    ],
   },
 } as const
 
 export type PlanKey = keyof typeof PLANS
-export type BillingCycle = 'monthly' | 'yearly'
 
-export function getPlanByPriceId(priceId: string): { plan: PlanKey; cycle: BillingCycle } | null {
+export function getPlanByPriceId(priceId: string): { plan: PlanKey } | null {
   for (const [key, plan] of Object.entries(PLANS)) {
-    if (plan.monthly.priceId === priceId) return { plan: key as PlanKey, cycle: 'monthly' }
-    if (plan.yearly.priceId === priceId)  return { plan: key as PlanKey, cycle: 'yearly' }
+    if (plan.priceId === priceId) return { plan: key as PlanKey }
   }
   return null
 }
