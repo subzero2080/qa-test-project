@@ -10,7 +10,11 @@ function getResend() {
   return _resend
 }
 
-const from = () => `${process.env.RESEND_FROM_NAME ?? APP_NAME} <${process.env.RESEND_FROM_EMAIL ?? 'noreply@example.com'}>`
+// Prefer the combined `RESEND_FROM` ("Name <email>"); fall back to the split
+// vars, then a last-resort placeholder.
+const from = () =>
+  process.env.RESEND_FROM ??
+  `${process.env.RESEND_FROM_NAME ?? APP_NAME} <${process.env.RESEND_FROM_EMAIL ?? 'noreply@example.com'}>`
 
 export async function sendVerificationCode(to: string, code: string) {
   return getResend().emails.send({
