@@ -1,28 +1,22 @@
 import Link from 'next/link'
 import { Check } from 'lucide-react'
 import { PLANS } from '@/lib/stripe/client'
-import { APP_NAME } from '@/lib/app-config'
+import SiteHeader from '@/components/layout/SiteHeader'
+
+// Plans intentionally hidden from the pricing page. The plan + its Stripe
+// wiring (PLANS, price env, /checkout) stay intact — this only controls display.
+const HIDDEN_PLANS: readonly string[] = ['team']
 
 function formatPrice(cents: number) {
   return `$${(cents / 100).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`
 }
 
 export default function PricingPage() {
-  const plans = Object.entries(PLANS)
+  const plans = Object.entries(PLANS).filter(([key]) => !HIDDEN_PLANS.includes(key))
 
   return (
     <div className="bg-space" style={{ minHeight: '100vh' }}>
-      <header className="flex items-center justify-between px-6 py-5 md:px-10">
-        <Link href="/" className="text-lg font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-          {APP_NAME}
-        </Link>
-        <nav className="flex items-center gap-5">
-          <Link href="/" className="text-sm" style={{ color: 'var(--text-secondary)' }}>Home</Link>
-          <Link href="/about" className="text-sm" style={{ color: 'var(--text-secondary)' }}>About</Link>
-          <Link href="/pricing" className="text-sm" style={{ color: 'var(--text-primary)' }}>Pricing</Link>
-          <Link href="/login" className="text-sm" style={{ color: 'var(--text-secondary)' }}>Sign in</Link>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <main className="px-6 pt-10 pb-20 flex flex-col items-center">
         <h1 className="text-3xl font-bold text-center" style={{ color: 'var(--text-primary)' }}>

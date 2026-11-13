@@ -1,26 +1,13 @@
 import Link from 'next/link'
 import { config } from '@/lib/app-config'
+import SiteHeader from '@/components/layout/SiteHeader'
 
 export const metadata = { title: `About — ${config.name}` }
 
 export default function AboutPage() {
   return (
     <div className="bg-space" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Top bar */}
-      <header className="flex items-center justify-between px-6 py-5 md:px-10">
-        <Link href="/" className="text-lg font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-          {config.name}
-        </Link>
-        <nav className="flex items-center gap-5">
-          <Link href="/" className="text-sm" style={{ color: 'var(--text-secondary)' }}>Home</Link>
-          <Link href="/about" className="text-sm" style={{ color: 'var(--text-primary)' }}>About</Link>
-          <Link href="/pricing" className="text-sm" style={{ color: 'var(--text-secondary)' }}>Pricing</Link>
-          <Link href="/login" className="text-sm" style={{ color: 'var(--text-secondary)' }}>Sign in</Link>
-          <Link href="/pricing" className="btn-primary text-sm" style={{ padding: '8px 16px', borderRadius: '8px' }}>
-            Sign up
-          </Link>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <main className="mx-auto px-6 pb-20 pt-6" style={{ maxWidth: 720, color: 'var(--text-secondary)', lineHeight: 1.7 }}>
         <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>About {config.name}</h1>

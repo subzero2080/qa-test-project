@@ -1,16 +1,12 @@
-import Link from 'next/link'
 import { config } from '@/lib/app-config'
+import SiteHeader from '@/components/layout/SiteHeader'
 
 export const metadata = { title: `Privacy Policy — ${config.name}` }
 
 export default function PrivacyPage() {
   return (
     <div className="bg-space" style={{ minHeight: '100vh' }}>
-      <header className="px-6 py-5 md:px-10">
-        <Link href="/" className="text-lg font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-          {config.name}
-        </Link>
-      </header>
+      <SiteHeader />
       <main className="mx-auto px-6 pb-20" style={{ maxWidth: 720, color: 'var(--text-secondary)', lineHeight: 1.7 }}>
         <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>Privacy Policy</h1>
         <p className="mt-2 text-sm" style={{ color: 'var(--text-muted)' }}>Last updated: {new Date().toLocaleDateString()}</p>
